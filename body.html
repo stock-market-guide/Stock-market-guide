@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stock Market Guide - Learn, Invest, Grow</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        /* CSS Variables */
+        :root {
+            --primary-navy: #0f172a;
+            --secondary-navy: #1e293b;
+            --accent-green: #10b981;
+            --accent-green-hover: #059669;
+            --text-dark: #334155;
+            --text-muted: #64748b;
+            --bg-light: #f8fafc;
+            --card-bg: #ffffff;
+            --border-color: #e2e8f0;
+            --shadow-sm: 0 1px 3px rgba(0,0,0,0.05);
+            --shadow-md: 0 4px 6px -1px rgba(0,0,0,0.1), 0 2px 4px -1px rgba(0,0,0,0.06);
+            --shadow-lg: 0 10px 15px -3px rgba(0,0,0,0.1), 0 4px 6px -2px rgba(0,0,0,0.05);
+            --radius: 12px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-light);
+            color: var(--text-dark);
+            line-height: 1.6;
+        }
+
+        /* Header & Navigation */
+        header {
+            background-color: var(--primary-navy);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: var(--shadow-md);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 1.5rem;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: #ffffff;
+            text-decoration: none;
+        }
+
+        .logo i {
+            font-size: 1.5rem;
+            color: var(--accent-green);
+        }
+
+        .logo-text h1 {
+            font-size: 1.25rem;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+        }
+
+        .logo-text p {
+            font-size: 0.75rem;
+            color: #94a3b8;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 1.5rem;
+        }
+
+        nav a {
+            color: #cbd5e1;
+            text-decoration: none;
+            font-size: 0.95rem;
+            font-weight: 500;
+            transition: color 0.2s ease;
+        }
+
+        nav a:hover, nav a.active {
+            color: var(--accent-green);
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, var(--primary-navy) 0%, var(--secondary-navy) 100%);
+            color: #ffffff;
+            padding: 4rem 1.5rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(16,185,129,0.1) 0%, transparent 60%);
+            pointer-events: none;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero h2 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            line-height: 1.2;
+        }
+
+        .hero p {
+            font-size: 1.15rem;
+            color: #cbd5e1;
+            margin-bottom: 2rem;
+        }
+
+        .btn-primary {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background-color: var(--accent-green);
+            color: #ffffff;
+            padding: 0.85rem 2rem;
+            font-size: 1rem;
+            font-weight: 600;
+            border-radius: 50px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
+        }
+
+        .btn-primary:hover {
+            background-color: var(--accent-green-hover);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 16px rgba(16, 185, 129, 0.4);
+        }
+
+        /* Main Container */
+        .container {
+            max-width: 1200px;
+            margin: 3rem auto;
+            padding: 0 1.5rem;
+        }
+
+        /* Overview Section */
+        .overview-card {
+            background: var(--card-bg);
+            border-radius: var(--radius);
+            padding: 2rem;
+            border: 1px solid var(--border-color);
+            box-shadow: var(--shadow-sm);
+            margin-bottom: 2.5rem;
+        }
+
+        .overview-card h3 {
+            font-size: 1.5rem;
+            color: var(--primary-navy);
+            margin-bottom: 0.75rem;
+        }
+
+        .overview-card p {
+            color: var(--text-muted);
+            font-size: 1.05rem;
+        }
+
+        /* Grid Layout for Sections */
+        .grid-layout {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2.5rem;
+        }
+
+        /* Cards */
+        .card {
+            background: var(--card-bg);
+            border-radius: var(--radius);
+            padding: 2rem;
+            border: 1px solid var(--border-color);
+            box-shadow: var(--shadow-sm);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .card-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 1.25rem;
+        }
+
+        .card-header i {
+            font-size: 1.25rem;
+            color: var(--accent-green);
+            background: rgba(16, 185, 129, 0.1);
+            padding: 10px;
+            border-radius: 8px;
+        }
+
+        .card h3 {
+            font-size: 1.25rem;
+            color: var(--primary-navy);
+        }
+
+        .custom-list {
+            list-style: none;
+        }
+
+        .custom-list li {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            margin-bottom: 0.85rem;
+            color: var(--text-dark);
+            font-size: 0.95rem;
+        }
+
+        .custom-list li:last-child {
+            margin-bottom: 0;
+        }
+
+        .custom-list li i {
+            color: var(--accent-green);
+            font-size: 0.9rem;
+            margin-top: 4px;
+        }
+
+        /* Disclaimer Section */
+        .disclaimer-card {
+            background: #fffbe3;
+            border: 1px solid #fef08a;
+            border-radius: var(--radius);
+            padding: 1.5rem;
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+        }
+
+        .disclaimer-card i {
+            color: #d97706;
+            font-size: 1.5rem;
+            margin-top: 2px;
+        }
+
+        .disclaimer-card div h4 {
+            color: #92400e;
+            font-size: 1rem;
+            margin-bottom: 0.25rem;
+        }
+
+        .disclaimer-card div p {
+            color: #b45309;
+            font-size: 0.9rem;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--primary-navy);
+            color: #94a3b8;
+            padding: 2.5rem 1.5rem;
+            text-align: center;
+            margin-top: 4rem;
+            border-top: 1px solid var(--secondary-navy);
+        }
+
+        footer h4 {
+            color: #ffffff;
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+        }
+
+        footer p {
+            font-size: 0.875rem;
+            margin-bottom: 0.25rem;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-container {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .hero h2 {
+                font-size: 1.85rem;
+            }
+
+            .hero p {
+                font-size: 1rem;
+            }
+
+            .grid-layout {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header Navigation -->
+    <header>
+        <div class="nav-container">
+            <a href="#" class="logo">
+                <i class="fa-solid fa-chart-line"></i>
+                <div class="logo-text">
+                    <h1>Stock Market Guide</h1>
+                    <p>Learn • Invest • Grow</p>
+                </div>
+            </a>
+            <nav>
+                <ul>
+                    <li><a href="#" class="active">Home</a></li>
+                    <li><a href="#">Basics</a></li>
+                    <li><a href="#">Investment</a></li>
+                    <li><a href="#">Trading</a></li>
+                    <li><a href="#">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h2>Welcome to Stock Market Guide</h2>
+            <p>शेयर बाजार सीखें, सही निवेश करें और अपना भविष्य सुरक्षित बनाएं।</p>
+            <a href="#" class="btn-primary">
+                Start Learning <i class="fa-solid fa-arrow-right"></i>
+            </a>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <main class="container">
+        
+        <!-- Overview -->
+        <section class="overview-card">
+            <h3>Stock Market क्या है?</h3>
+            <p>स्टॉक मार्केट वह जगह है जहां कंपनियों के शेयर खरीदे और बेचे जाते हैं। भारत के प्रमुख स्टॉक एक्सचेंज <strong>NSE (National Stock Exchange)</strong> और <strong>BSE (Bombay Stock Exchange)</strong> हैं।</p>
+        </section>
+
+        <!-- Feature Cards Grid -->
+        <div class="grid-layout">
+            
+            <!-- Card 1 -->
+            <div class="card">
+                <div class="card-header">
+                    <i class="fa-solid fa-shield-halved"></i>
+                    <h3>निवेश करने से पहले</h3>
+                </div>
+                <ul class="custom-list">
+                    <li><i class="fa-solid fa-circle-check"></i> कंपनी की पूरी जानकारी लें।</li>
+                    <li><i class="fa-solid fa-circle-check"></i> लंबी अवधि का निवेश करें।</li>
+                    <li><i class="fa-solid fa-circle-check"></i> Risk Management सीखें।</li>
+                    <li><i class="fa-solid fa-circle-check"></i> Diversification रखें।</li>
+                    <li><i class="fa-solid fa-circle-check"></i> Panic Selling से बचें।</li>
+                </ul>
+            </div>
+
+            <!-- Card 2 -->
+            <div class="card">
+                <div class="card-header">
+                    <i class="fa-solid fa-book-open"></i>
+                    <h3>Stock Market Basics</h3>
+                </div>
+                <ul class="custom-list">
+                    <li><i class="fa-solid fa-chevron-right"></i> शेयर क्या होता है?</li>
+                    <li><i class="fa-solid fa-chevron-right"></i> IPO क्या होता है?</li>
+                    <li><i class="fa-solid fa-chevron-right"></i> Demat Account क्या है?</li>
+                    <li><i class="fa-solid fa-chevron-right"></i> Trading और Investing में अंतर</li>
+                    <li><i class="fa-solid fa-chevron-right"></i> Mutual Fund क्या है?</li>
+                </ul>
+            </div>
+
+            <!-- Card 3 -->
+            <div class="card">
+                <div class="card-header">
+                    <i class="fa-solid fa-lightbulb"></i>
+                    <h3>Investment Tips</h3>
+                </div>
+                <ul class="custom-list">
+                    <li><i class="fa-solid fa-seedling"></i> SIP करें</li>
+                    <li><i class="fa-solid fa-gem"></i> Quality Stocks खरीदें</li>
+                    <li><i class="fa-solid fa-clock"></i> Long Term सोचें</li>
+                    <li><i class="fa-solid fa-newspaper"></i> News Follow करें</li>
+                    <li><i class="fa-solid fa-bullseye"></i> Financial Planning करें</li>
+                </ul>
+            </div>
+
+        </div>
+
+        <!-- Disclaimer -->
+        <section class="disclaimer-card">
+            <i class="fa-solid fa-triangle-exclamation"></i>
+            <div>
+                <h4>Disclaimer</h4>
+                <p>यह वेबसाइट केवल शिक्षा (Education) के उद्देश्य से बनाई गई है। किसी भी निवेश से पहले अपने Financial Advisor से सलाह अवश्य लें।</p>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <h4>Stock Market Guide</h4>
+        <p>Designed by Ravi Kumar</p>
+        <p>&copy; 2026 All Rights Reserved</p>
+    </footer>
+
+</body>
+</html>

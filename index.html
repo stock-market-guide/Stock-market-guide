@@ -6,60 +6,61 @@
 
 <title>Stock Market Guide | Learn • Invest • Grow</title>
 
-    /* Market Dashboard */
+
+   <style>
+
+/* Market Dashboard */
 
 .market-grid{
-display:grid;
-grid-template-columns:repeat(3,1fr);
-gap:20px;
-margin-top:30px;
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:20px;
+    margin-top:30px;
 }
 
 .market-card{
-background:white;
-padding:30px 20px;
-text-align:center;
-border-radius:15px;
-box-shadow:0 8px 25px rgba(0,0,0,.1);
-transition:.3s;
+    background:white;
+    padding:30px 20px;
+    text-align:center;
+    border-radius:15px;
+    box-shadow:0 8px 25px rgba(0,0,0,0.1);
+    transition:.3s;
 }
 
 .market-card:hover{
-transform:translateY(-8px);
-box-shadow:0 15px 35px rgba(0,0,0,.15);
+    transform:translateY(-8px);
+    box-shadow:0 15px 35px rgba(0,0,0,0.15);
 }
 
 .market-card span{
-font-size:35px;
+    font-size:35px;
 }
 
 .market-card h3{
-margin-top:10px;
-color:#0b3d91;
+    margin-top:10px;
+    color:#0b3d91;
 }
 
-.price{
-font-size:24px;
-font-weight:bold;
-margin-top:10px;
-color:#0b8457;
+.market-price{
+    font-size:25px;
+    font-weight:bold;
+    margin-top:10px;
 }
 
 .market-status{
-font-size:13px;
-color:#777;
-margin-top:5px;
+    font-size:13px;
+    color:#777;
+    margin-top:5px;
 }
 
 @media(max-width:768px){
-
-.market-grid{
-grid-template-columns:1fr;
+    .market-grid{
+        grid-template-columns:1fr;
+    }
 }
 
-}
-    
-<style>
+ 
+
 :root{
     --primary:#0b3d91;
     --secondary:#062b62;

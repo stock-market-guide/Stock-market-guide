@@ -6,7 +6,175 @@
 
 <title>Stock Market Guide | Learn • Invest • Grow</title>
 
+/* Section */
+.section{
+    width:90%;
+    max-width:1100px;
+    margin:auto;
+    padding:70px 0;
+}
 
+.section-title{
+    text-align:center;
+    margin-bottom:35px;
+}
+
+.section-title h2{
+    font-size:32px;
+    color:#0b3d91;
+}
+
+.section-title p{
+    color:#777;
+    margin-top:5px;
+}
+
+
+/* Trading vs Investing */
+
+.compare-grid{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:25px;
+}
+
+.compare-card{
+    background:white;
+    padding:30px;
+    border-radius:15px;
+    box-shadow:0 8px 25px rgba(0,0,0,.10);
+}
+
+.compare-card span{
+    font-size:35px;
+}
+
+.compare-card h3{
+    font-size:23px;
+    margin:10px 0;
+}
+
+.compare-card ul{
+    padding-left:20px;
+}
+
+.investing{
+    border-top:5px solid #0b8457;
+}
+
+.trading{
+    border-top:5px solid #e67e22;
+}
+
+
+/* SIP Calculator */
+
+.calculator-box{
+    max-width:600px;
+    margin:auto;
+    background:white;
+    padding:30px;
+    border-radius:15px;
+    box-shadow:0 8px 25px rgba(0,0,0,.10);
+}
+
+.calculator-box label{
+    display:block;
+    font-weight:bold;
+    margin-top:15px;
+}
+
+.calculator-box input{
+    width:100%;
+    padding:14px;
+    margin-top:7px;
+    border:1px solid #ddd;
+    border-radius:8px;
+    font-size:16px;
+}
+
+.calculator-box button{
+    width:100%;
+    padding:14px;
+    margin-top:20px;
+    border:none;
+    border-radius:8px;
+    background:#0b8457;
+    color:white;
+    font-size:16px;
+    font-weight:bold;
+    cursor:pointer;
+}
+
+.calculator-box button:hover{
+    background:#096b48;
+}
+
+.result{
+    margin-top:15px;
+    padding:15px;
+    text-align:center;
+    background:#e9f8f1;
+    color:#087c4f;
+    border-radius:8px;
+    font-weight:bold;
+}
+
+
+/* FAQ */
+
+.faq details{
+    background:white;
+    margin:12px 0;
+    padding:18px;
+    border-radius:10px;
+    box-shadow:0 4px 15px rgba(0,0,0,.08);
+}
+
+.faq summary{
+    cursor:pointer;
+    font-weight:bold;
+    color:#0b3d91;
+}
+
+.faq p{
+    margin-top:12px;
+}
+
+
+/* Disclaimer */
+
+.disclaimer{
+    width:90%;
+    max-width:1100px;
+    margin:30px auto;
+    padding:25px;
+    background:#fff3cd;
+    border-left:5px solid #f0ad00;
+    border-radius:10px;
+}
+
+.disclaimer h2{
+    color:#7a5600;
+}
+
+
+/* Mobile */
+
+@media(max-width:768px){
+
+    .compare-grid{
+        grid-template-columns:1fr;
+    }
+
+    .section-title h2{
+        font-size:27px;
+    }
+
+    .calculator-box{
+        padding:20px;
+    }
+}
    <style>
 
 /* Market Dashboard */
@@ -488,6 +656,143 @@ footer p{
             </p>
         </div>
 
+       <!-- Trading vs Investing -->
+<section class="section" id="trading">
+
+    <div class="section-title">
+        <h2>⚖️ Trading vs Investing</h2>
+        <p>दोनों में अंतर समझना बहुत जरूरी है</p>
+    </div>
+
+    <div class="compare-grid">
+
+        <div class="compare-card investing">
+            <span>💰</span>
+            <h3>Investing</h3>
+
+            <ul>
+                <li>Long Term Approach</li>
+                <li>Fundamental Analysis</li>
+                <li>Wealth Creation Focus</li>
+                <li>कम बार Buying/Selling</li>
+                <li>कम Monitoring</li>
+            </ul>
+        </div>
+
+        <div class="compare-card trading">
+            <span>⚡</span>
+            <h3>Trading</h3>
+
+            <ul>
+                <li>Short Term Approach</li>
+                <li>Technical Analysis</li>
+                <li>Risk ज्यादा हो सकता है</li>
+                <li>Active Market Monitoring</li>
+                <li>Strict Risk Management</li>
+            </ul>
+        </div>
+
+    </div>
+</section>
+
+<!-- SIP Calculator -->
+       
+<section class="section" id="calculator">
+
+    <div class="section-title">
+        <h2>🧮 SIP Calculator</h2>
+        <p>अपनी अनुमानित SIP investment की future value देखें</p>
+    </div>
+
+    <div class="calculator-box">
+
+        <label>Monthly Investment (₹)</label>
+        <input
+            type="number"
+            id="monthlyInvestment"
+            placeholder="जैसे 5000"
+        >
+
+        <label>Expected Annual Return (%)</label>
+        <input
+            type="number"
+            id="annualReturn"
+            placeholder="जैसे 12"
+        >
+
+        <label>Investment Period (Years)</label>
+        <input
+            type="number"
+            id="investmentYears"
+            placeholder="जैसे 10"
+        >
+
+        <button onclick="calculateSIP()">
+            Calculate SIP
+        </button>
+
+        <div id="sipResult" class="result">
+            अपना investment data भरें
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- FAQ -->
+<section class="section" id="faq">
+
+    <div class="section-title">
+        <h2>❓ Frequently Asked Questions</h2>
+    </div>
+
+    <div class="faq">
+
+        <details>
+            <summary>क्या Stock Market में पैसा लगाना सुरक्षित है?</summary>
+            <p>
+                Stock Market में market risk होता है।
+                किसी भी investment से पहले research और risk management जरूरी है।
+            </p>
+        </details>
+
+        <details>
+            <summary>क्या कम पैसे से निवेश शुरू कर सकते हैं?</summary>
+            <p>
+                हाँ, व्यक्ति अपनी financial capacity के अनुसार
+                छोटी राशि से निवेश की शुरुआत कर सकता है।
+            </p>
+        </details>
+
+        <details>
+            <summary>Trading और Investing में क्या अंतर है?</summary>
+            <p>
+                Trading आमतौर पर short-term price movements पर आधारित होती है,
+                जबकि Investing आमतौर पर long-term wealth creation पर focus करती है।
+            </p>
+        </details>
+
+    </div>
+
+</section>
+
+
+<!-- Disclaimer -->
+<section class="disclaimer">
+
+    <h2>⚠️ Important Disclaimer</h2>
+
+    <p>
+        यह वेबसाइट केवल Educational और Informational Purpose के लिए बनाई गई है।
+        यहाँ दी गई जानकारी किसी भी प्रकार की Buy, Sell या Investment Advice नहीं है।
+        Stock Market में financial risk होता है।
+        किसी भी investment decision से पहले अपना research करें और
+        योग्य financial professional से सलाह लें।
+    </p>
+
+</section>
+
         <div class="card">
             <div class="icon">🚀</div>
             <h3>IPO क्या है?</h3>
@@ -724,6 +1029,57 @@ function calculateSIP(){
 }
 
 </script>
+<script>
 
+function calculateSIP(){
+
+    let monthly =
+        parseFloat(document.getElementById("monthlyInvestment").value);
+
+    let annualRate =
+        parseFloat(document.getElementById("annualReturn").value);
+
+    let years =
+        parseFloat(document.getElementById("investmentYears").value);
+
+    if(!monthly || !annualRate || !years){
+
+        document.getElementById("sipResult").innerHTML =
+        "⚠️ कृपया सभी details भरें";
+
+        return;
+    }
+
+    let months = years * 12;
+
+    let monthlyRate = annualRate / 12 / 100;
+
+    let futureValue =
+        monthly *
+        (
+            (Math.pow(1 + monthlyRate, months) - 1)
+            / monthlyRate
+        )
+        * (1 + monthlyRate);
+
+    let investedAmount = monthly * months;
+
+    let estimatedReturn =
+        futureValue - investedAmount;
+
+    document.getElementById("sipResult").innerHTML =
+
+    "💰 Total Investment: ₹" +
+    investedAmount.toLocaleString("en-IN") +
+
+    "<br>📈 Estimated Returns: ₹" +
+    estimatedReturn.toLocaleString("en-IN") +
+
+    "<br>🎯 Future Value: ₹" +
+    futureValue.toLocaleString("en-IN");
+
+}
+
+</script>
 </body>
 </html>

@@ -7,70 +7,55 @@
     <title>Stock Market Guide | Learn • Invest • Grow</title>
 
     <style>
-    /* LIVE MARKET CHART */
+        
+        <!-- =========================
+     LIVE MARKET CHART
+========================= -->
 
-.chart-box{
-    background:#ffffff;
-    padding:20px;
-    border-radius:18px;
-    box-shadow:0 8px 25px rgba(0,0,0,.10);
-    max-width:1100px;
-    margin:auto;
-}
+<section class="container" id="live-chart">
 
-.chart-header{
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    margin-bottom:20px;
-}
+    <div class="section-title">
+        <h2>📈 Live Market Chart</h2>
+        <p>Market की movement को chart के जरिए समझें</p>
+    </div>
 
-.chart-header h3{
-    color:var(--primary);
-    font-size:22px;
-}
+    <div class="chart-box">
 
-.chart-header select{
-    padding:10px 14px;
-    border:1px solid #ddd;
-    border-radius:8px;
-    background:white;
-    font-size:14px;
-}
+        <div class="chart-header">
 
-.tradingview-widget-container{
-    width:100%;
-    min-height:500px;
-    overflow:hidden;
-    border-radius:12px;
-}
+            <div>
+                <h3 id="chartTitle">🇮🇳 NIFTY 50</h3>
+                <p>Market Chart</p>
+            </div>
 
-#tradingview_chart{
-    width:100%;
-    height:500px;
-}
+            <select id="symbolSelect">
+                <option value="NSE:NIFTY">NIFTY 50</option>
+                <option value="NSE:BANKNIFTY">BANK NIFTY</option>
+                <option value="BSE:SENSEX">SENSEX</option>
+                <option value="NSE:RELIANCE">RELIANCE</option>
+                <option value="NSE:TCS">TCS</option>
+                <option value="NSE:HDFCBANK">HDFC BANK</option>
+                <option value="NSE:INFY">INFOSYS</option>
+            </select>
 
-@media(max-width:600px){
+        </div>
 
-    .chart-box{
-        padding:12px;
-    }
+        <div class="tradingview-widget-container">
 
-    .chart-header{
-        flex-direction:column;
-        gap:12px;
-        align-items:flex-start;
-    }
+            <div
+                id="tradingview_chart"
+                style="height:500px;width:100%;">
+            </div>
 
-    .chart-header select{
-        width:100%;
-    }
+        </div>
 
-    .tradingview-widget-container,
-    #tradingview_chart{
-        height:400px;
-    }
-}
+    </div>
+
+    <p class="market-note">
+        ⚠️ Chart केवल Educational Purpose के लिए है।
+    </p>
+
+</section>
 
         /* =========================
            GLOBAL
@@ -1369,49 +1354,75 @@
     </script>
 
     <!-- TradingView Chart Script -->
+    
+    <script>
+function loadTradingViewChart(symbol) {
 
-<script src="https://s3.tradingview.com/tv.js"></script>
+    const chart = document.getElementById("tradingview_chart");
 
-<script>
+    chart.innerHTML = "";
 
-function loadMarketChart(){
+    const script = document.createElement("script");
 
-    new TradingView.widget({
+    script.src =
+        "https://s3.tradingview.com/external-embedding/embed-widget-advanced-chart.js";
 
-        "width": "100%",
-        "height": 500,
+    script.type = "text/javascript";
+    script.async = true;
 
-        "symbol": "NSE:NIFTY",
-
-        "interval": "D",
-
-        "timezone": "Asia/Kolkata",
-
-        "theme": "light",
-
-        "style": "1",
-
-        "locale": "en",
-
-        "toolbar_bg": "#f1f3f6",
-
-        "enable_publishing": false,
-
-        "hide_top_toolbar": false,
-
-        "hide_legend": false,
-
-        "save_image": false,
-
-        "container_id": "tradingview_chart"
-
+    script.innerHTML = JSON.stringify({
+        autosize: true,
+        symbol: symbol,
+        interval: "D",
+        timezone: "Asia/Kolkata",
+        theme: "light",
+        style: "1",
+        locale: "in",
+        enable_publishing: false,
+        allow_symbol_change: false,
+        calendar: false,
+        hide_top_toolbar: false,
+        hide_legend: false,
+        save_image: false,
+        support_host: "https://www.tradingview.com"
     });
 
+    chart.appendChild(script);
 }
 
-loadMarketChart();
 
-</script>
+/* Default Chart */
 
-</body>
-</html>
+loadTradingViewChart("NSE:NIFTY");
+
+
+/* Change Chart */
+
+document
+    .getElementById("symbolSelect")
+    .addEventListener("change", function () {
+
+        const symbol = this.value;
+
+        const title = document.getElementById("chartTitle");
+
+        const names = {
+            "NSE:NIFTY": "🇮🇳 NIFTY 50",
+            "NSE:BANKNIFTY": "🏦 BANK NIFTY",
+            "BSE:SENSEX": "📊 SENSEX",
+            "NSE:RELIANCE": "🏢 RELIANCE",
+            "NSE:TCS": "💻 TCS",
+            "NSE:HDFCBANK": "🏦 HDFC BANK",
+            "NSE:INFY": "💻 INFOSYS"
+        };
+
+        title.textContent = names[symbol] || "📈 Market Chart";
+
+        loadTradingViewChart(symbol);
+
+    });
+    </script>
+
+   </body>
+    
+   </html>
